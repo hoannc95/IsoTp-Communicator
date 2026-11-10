@@ -1,0 +1,89 @@
+﻿<Window x:Class="IsoTpCommunicator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:IsoTpCommunicator"
+        xmlns:props="clr-namespace:IsoTpCommunicator.CustomProps"
+        Title="IsoTP Communicator" Width="450" Height="800"
+        Background="#F5F5F7" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Icon="/icon.png">
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="177"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <!-- 1. ISO-TP CONFIGURATION SECTION -->
+        <GroupBox x:Name="row_0" Header="ISO-TP Configuration" Grid.Row="0" Margin="0,0,0,10" Padding="10" Background="White" IsEnabled="False">
+            <StackPanel>
+                <!-- Physical ID Row -->
+                <Grid Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Physical ID:" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txt_PhysicalId" Grid.Column="1" Height="26" VerticalContentAlignment="Center" Padding="5,0" Text="0x701"/>
+                </Grid>
+
+                <!-- Functional ID Row -->
+                <Grid Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Func ID:" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txt_FuncId" Grid.Column="1" Height="26" VerticalContentAlignment="Center" Padding="5,0" Text="0x7DF"/>
+                </Grid>
+
+                <!-- Response ID Row -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Res ID:" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txt_ResId" Grid.Column="1" Height="26" VerticalContentAlignment="Center" Padding="5,0" Text="0x7C1"/>
+                </Grid>
+                <Grid Margin="0,8,0,0">
+                    <Button x:Name="btn_Cfg" Grid.Column="1" Style="{StaticResource RoundedButtonStyle}" props:VisualProps.CornerRadius="3" Width="80" Height="22" Content="Config" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btn_Cfg_Click"/>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- 2. MESSAGE LOG SECTION (Rx / Tx) -->
+        <DockPanel x:Name="row_1" Grid.Row="1" Margin="0,0,0,10" IsEnabled="False">
+            <TextBlock Text="Message Log (Rx / Tx):" DockPanel.Dock="Top" Margin="0,0,0,5" FontWeight="SemiBold"/>
+            <RichTextBox x:Name="rtb_log" 
+                         Background="White" 
+                         BorderBrush="Gray" 
+                         BorderThickness="1" 
+                         IsReadOnly="True"
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Auto"/>
+        </DockPanel>
+
+        <!-- 3. MESSAGE INPUT AND SEND BUTTON SECTION -->
+        <Grid x:Name="row_2" Grid.Row="2" IsEnabled="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Message input text box -->
+            <TextBox x:Name="txt_MessageInput" Grid.Column="0" Height="32" 
+                     VerticalContentAlignment="Center" Padding="8,0" 
+                     FontSize="13"
+                     ToolTip="Enter hex string or message to send..."/>
+
+            <!-- Send button -->
+            <Button x:Name="btn_Send" Grid.Column="2" Style="{StaticResource RoundedButtonStyle}" Height="28" Content="Send" 
+                     Click="btn_Send_Click"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button x:Name="btn_connect" Style="{StaticResource RoundedButtonStyle}" Width="100" Height="28" Content="Connect" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btn_connect_Click"/>
+        </Grid>
+    </Grid>
+</Window>

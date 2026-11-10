@@ -1,0 +1,36 @@
+﻿<Window x:Class="IsoTpCommunicator.ConnectCAN"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IsoTpCommunicator"
+        xmlns:props="clr-namespace:IsoTpCommunicator.CustomProps"
+        mc:Ignorable="d"
+        Title="CAN Connection" Height="316" Width="482"
+        ShowInTaskbar="False"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="grid0" Height="*"/>
+            <RowDefinition x:Name="grid1" Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <UniformGrid Rows="1">
+                <GroupBox x:Name="gb_peakcan" Margin="10">
+                    <ListView x:Name="lv_peakcan" Margin="10,10,10,30">
+                    </ListView>
+                </GroupBox>
+                <GroupBox Margin="10">
+                    <ListView x:Name="lv_vectorcan" Margin="10,10,10,30">
+
+                    </ListView>
+                </GroupBox>
+            </UniformGrid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button x:Name="btn_refresh" Style="{StaticResource RoundedButtonStyle}" props:VisualProps.CornerRadius="3" Width="80" Height="25" Content="Refresh" Margin="10,0,10,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="btn_refresh_Click"/>
+            <Button x:Name="btn_connect" Style="{StaticResource RoundedButtonStyle}" props:VisualProps.CornerRadius="3" Width="80" Height="25" Content="Connect" Margin="10,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="btn_connect_Click"/>
+        </Grid>
+    </Grid>
+</Window>
